@@ -1,4 +1,5 @@
-import React      from 'react';
+import React from 'react';
+import Day from './Day';
 
 class Calendar extends React.Component
 {
@@ -8,25 +9,25 @@ class Calendar extends React.Component
   }
   renderLastWeek()
   {
-    return this.renderWeek([6,7,8,9]);
+    return this.renderWeek([5,6,7,8,9]);
 
   }
-  renderWeek(days)
+  renderWeek(days_of_week)
   {
-    return this.props.days.map(function(day)
+    const {participants, absents} = this.props;
+    return this.props.days.map(function(day, i)
     {
-      if (!days.includes(day))
+      if (!days_of_week.includes(day))
       {
         return null;
       }
-      if (day === false)
+      const dayProps =
       {
-        return <td>Festiu!</td>;
-      }
-      const partipants = this.props.absent.map(function(a)
-      {
-        //TODO !!
-      });
+        day,
+        participants,
+        absents
+      };
+      return <Day key={i} {...dayProps} />;
     });
   }
   render()

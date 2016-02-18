@@ -8,13 +8,13 @@ class App extends React.Component
 {
   render()
   {
-    const {start_day, participants} = this.props;
+    const {start_day, participants, percentage} = this.props;
 
     return <div>
       <DatePicker date={start_day}/>
       <Participants participants={participants} />
       <Calendar {...this.props} />
-      <Result />
+      <Result percentage={percentage} />
     </div>;
   }
 };
