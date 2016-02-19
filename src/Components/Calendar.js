@@ -21,16 +21,16 @@ class Calendar extends React.Component
       {
         return null;
       }
-      const thisDay = moment(startDay).add(index < 5 ? index : index + 2, 'd').format('ddd, DD/MM/YYYY');
       const dayProps =
       {
-        thisDay,
+        thisDay : moment(startDay).add(index < 5 ? index : index + 2, 'd').format('ddd, DD/MM/YYYY'),
+        toggle  : () => toggle(index),
         isNotHoliday,
         participants,
         absents,
         index
       };
-      return <Day key={index} toggle={() => toggle(index)} {...dayProps} />;
+      return <Day key={index} {...dayProps} />;
     });
   }
   render()
