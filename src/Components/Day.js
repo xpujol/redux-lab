@@ -22,6 +22,7 @@ class Day extends React.Component
   render()
   {
     return <td style={{height:200, width: 200, border: '1px solid black'}}>
+      <p>{this.props.thisDay}</p>
       {this.props.day ? this.renderWorking() : this.renderHoliday()}
       <button onClick={this.props.toggle}>Toggle holiday</button>
     </td>;
