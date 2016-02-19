@@ -10,14 +10,13 @@ class Calendar extends React.Component
   renderLastWeek()
   {
     return this.renderWeek([5,6,7,8,9]);
-
   }
   renderWeek(days_of_week)
   {
-    const {participants, absents} = this.props;
-    return this.props.days.map(function(day, i)
+    const {participants, absents, toggle} = this.props;
+    return this.props.days.map(function(day, index)
     {
-      if (!days_of_week.includes(day))
+      if (!days_of_week.includes(index))
       {
         return null;
       }
@@ -25,9 +24,10 @@ class Calendar extends React.Component
       {
         day,
         participants,
-        absents
+        absents,
+        index
       };
-      return <Day key={i} {...dayProps} />;
+      return <Day key={index} toggle={() => toggle(index)} {...dayProps} />;
     });
   }
   render()

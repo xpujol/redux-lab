@@ -4,7 +4,9 @@ class Result extends React.Component
 {
   render()
   {
-    const total = 69;
+    const {participants, absents, percentage, days} = this.props;
+
+    const total = (percentage/100) * 2 * (((participants.length  * days.filter(d => d === true).length)) - absents.length);
 
     return <div>
       <p>

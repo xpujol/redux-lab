@@ -1,15 +1,21 @@
 import React    from 'react';
 import ReactDOM from 'react-dom';
 import App      from './app';
+import store    from './State/';
+import {Provider} from 'react-redux';
 
 const initialData =
 {
   participants : ['Xevi', 'Meri', 'Patxi', 'Carles'],
   days         : [false, false, true, true, true,
                   true, true, true, true, false],
-  absent       : [{p : 3, d : 2}, {p : 0, d : 4}],   //El tercer dia falta el Carles, el cinquè dia falta el Xevi
+  absents      : [{p : 3, d : 2}, {p : 1, d : 6}, {p : 1, d : 7}],   //El tercer dia falta el Carles,
   start_day    : '2016-04-13',
-  percentage   : 80
+  percentage   : 75
 };
 
-ReactDOM.render(<App {...initialData} />, document.getElementById('root'));
+
+ReactDOM.render(
+  <Provider store={store} >
+    <App />
+  </Provider>, document.getElementById('root'));
