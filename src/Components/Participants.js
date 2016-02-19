@@ -13,8 +13,7 @@ class Participants extends React.Component
   }
   renderParticipants()
   {
-
-    return this.props.participants.map((p, i) => <li key={i}>{p} <a onClick={() => this.props.del(p)}>X</a></li>);
+    return this.props.participants.map((p, i) => <li key={i}>{p} <a href="#" onClick={() => this.props.del(p)}>[x]</a></li>);
   }
   handleButton()
   {

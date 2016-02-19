@@ -1,5 +1,6 @@
 import React from 'react';
 import Day from './Day';
+import moment from 'moment';
 
 class Calendar extends React.Component
 {
@@ -13,15 +14,17 @@ class Calendar extends React.Component
   }
   renderWeek(days_of_week)
   {
-    const {participants, absents, toggle} = this.props;
+    const {startDay, participants, absents, toggle} = this.props;
     return this.props.days.map(function(day, index)
     {
       if (!days_of_week.includes(index))
       {
         return null;
       }
+      const thisDay = moment(startDay).add(index < 5 ? index : index + 2, 'd').format('ddd, DD/MM/YYYY');
       const dayProps =
       {
+        thisDay,
         day,
         participants,
         absents,
