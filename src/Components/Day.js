@@ -2,29 +2,29 @@ import React from 'react';
 
 class Day extends React.Component
 {
-  renderHoliday()
-  {
-    return <h5>Holiday</h5>
-  }
   renderWorking()
   {
     const {participants, absents, index} = this.props;
-    const list = participants.map(function(p)
+    const list = participants.map(function(participant, i)
     {
-      const is_absent = !!absents.find(function(absent)
+      const isAbsent = !!absents.find(function(absent)
       {
-        return (participants.indexOf(p) === absent.p) && (index === absent.d);
+        const {p, d} = absent;
+        return (participants.indexOf(participant) === p) && (index === d);
       });
-      return <li key={p+'_'+index} style={{color : is_absent ? 'red' : 'green'}} >{p}{is_absent ? '' : ' : 2'}</li>;
+      return <li key={i} style={{color : isAbsent ? 'red' : 'green'}} >
+        {participant}{isAbsent ? '' : ' : 2'}
+      </li>;
     });
     return <ul>{list}</ul>;
   }
   render()
   {
-    return <td style={{height:200, width: 200, border: '1px solid black'}}>
-      <p>{this.props.thisDay}</p>
-      {this.props.day ? this.renderWorking() : this.renderHoliday()}
-      <button onClick={this.props.toggle}>Toggle holiday</button>
+    const {isNotHoliday, thisDay, toggle} = this.props;
+    return <td style={{height: 200, width: 200, border: '1px solid black'}}>
+      <p>{thisDay}</p>
+      {isNotHoliday ? this.renderWorking() : <h5>Holiday</h5>}
+      <button onClick={toggle}>Toggle holiday</button>
     </td>;
   }
 };

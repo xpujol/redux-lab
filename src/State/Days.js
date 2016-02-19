@@ -5,7 +5,9 @@ export function ToggleDay(index)
   return {type : TOGGLE_DAY, index};
 }
 
-const fullWeek = [true, true, true, true, true, true, true, true, true, true];
+const numDays = 10;
+const fullWeek = Array.apply(0, Array(numDays)).map(n => true);
+
 const reducer = function(state = fullWeek, action)
 {
   switch(action.type){

@@ -15,7 +15,7 @@ class Calendar extends React.Component
   renderWeek(days_of_week)
   {
     const {startDay, participants, absents, toggle} = this.props;
-    return this.props.days.map(function(day, index)
+    return this.props.days.map(function(isNotHoliday, index)
     {
       if (!days_of_week.includes(index))
       {
@@ -25,7 +25,7 @@ class Calendar extends React.Component
       const dayProps =
       {
         thisDay,
-        day,
+        isNotHoliday,
         participants,
         absents,
         index

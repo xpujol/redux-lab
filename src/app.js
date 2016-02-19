@@ -6,6 +6,8 @@ import Result from './Components/Result';
 import {AddParticipant, RemoveParticipant} from './State/Participants';
 import {ToggleDay} from './State/Days';
 import {ChangeStartDay} from './State/StartDay';
+import {ChangePercentage} from './State/Percentage';
+
 import { connect } from 'react-redux';
 
 class App extends React.Component
@@ -21,11 +23,13 @@ class App extends React.Component
 
     const change_start_day = n => dispatch(ChangeStartDay(n));
 
+    const change_percentage = n => dispatch(ChangePercentage(n));
+
     return <div>
       <DatePicker date={startDay} change_date={change_start_day}/>
       <Participants add={add_participant} del={remove_participant} participants={participants} />
       <Calendar {...this.props} toggle={toggle_day} />
-      <Result {...this.props} />
+      <Result change_percentage={change_percentage} {...this.props} />
     </div>;
   }
 };

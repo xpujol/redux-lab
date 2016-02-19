@@ -10,8 +10,7 @@ class DatePicker extends React.Component
   }
   render()
   {
-    const {date} = this.props;
-    const dateFormatted = moment(date).format('YYYY-MM-DD');
+    const dateFormatted = moment(this.props.date).format('YYYY-MM-DD');
 
     return <input type="date" value={dateFormatted} onChange={this.handleChange.bind(this)}/>;
   }

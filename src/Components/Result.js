@@ -2,17 +2,27 @@ import React      from 'react';
 
 class Result extends React.Component
 {
-  render()
+  handleChange(e)
+  {
+    const val = e.target.value;
+    (val >= 0) && (val <= 100) && this.props.change_percentage(val);
+  }
+  calculateResult()
   {
     const {participants, absents, percentage, days} = this.props;
-
     const total = (percentage/100) * 2 * (((participants.length  * days.filter(d => d === true).length)) - absents.length);
+    return Math.round(total);
+  }
+  render()
+  {
+    const {handleChange, calculateResult, props} = this;
 
     return <div>
       <p>
-        Percentage : <input onChange={() => {}} type="text" value={this.props.percentage} />
+        Percentage :
+        <input onChange={handleChange.bind(this)} type="text" value={props.percentage} />
       </p>
-      <h1>{total} points</h1>
+      <h1>{this.calculateResult()} points</h1>
     </div>
   }
 };
