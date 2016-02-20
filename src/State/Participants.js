@@ -13,7 +13,8 @@ export function RemoveParticipant(name)
 
 const reducer = function(state = [], action)
 {
-  switch(action.type){
+  switch(action.type)
+  {
     case ADD_PARTICIPANT:
       return [...state, action.name];
     case REMOVE_PARTICIPANT:

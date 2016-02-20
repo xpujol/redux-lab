@@ -11,7 +11,8 @@ const nextMonday = moment().day(8);
 
 const reducer = function(state = nextMonday, action)
 {
-  switch(action.type){
+  switch(action.type)
+  {
     case CHANGE_START_DAY:
       return action.date;
     default:

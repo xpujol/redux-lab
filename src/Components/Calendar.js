@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import Day from './Day';
 
 class Calendar extends React.Component
@@ -23,14 +22,14 @@ class Calendar extends React.Component
       }
       const dayProps =
       {
-        thisDay : moment(startDay).add(dayIndex < 5 ? dayIndex : dayIndex + 2, 'd').format('ddd, DD/MM/YYYY'),
-        toggle  : () => toggle_day(dayIndex),
+        toggle       : () => toggle_day(dayIndex),
+        set_absent   : p => set_absent(p, dayIndex),
+        unset_absent : p => unset_absent(p, dayIndex),
         dayIndex,
         isNotHoliday,
+        startDay,
         participants,
-        absents,
-        set_absent,
-        unset_absent
+        absents
       };
       return <Day key={dayIndex} {...dayProps} />;
     });

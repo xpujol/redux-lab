@@ -1,4 +1,4 @@
-import React      from 'react';
+import React from 'react';
 
 class Result extends React.Component
 {
@@ -10,17 +10,15 @@ class Result extends React.Component
   calculateResult()
   {
     const {participants, absents, percentage, days} = this.props;
-    const total = (percentage/100) * 2 * (((participants.length  * days.filter(d => d === true).length)) - absents.length);
+    const total = (percentage/100) * 2 * (((participants.length  * days.filter(d => d).length)) - absents.length);
     return Math.round(total);
   }
   render()
   {
-    const {handleChange, calculateResult, props} = this;
-
     return <div>
       <p>
         Percentage :
-        <input onChange={handleChange.bind(this)} type="text" value={props.percentage} />
+        <input onChange={this.handleChange.bind(this)} type="text" value={this.props.percentage} />
       </p>
       <h1>{this.calculateResult()} points</h1>
     </div>

@@ -7,7 +7,8 @@ export function ChangePercentage(percentage)
 
 const reducer = function(state = 70, action)
 {
-  switch(action.type){
+  switch(action.type)
+  {
     case CHANGE_PERCENTAGE:
       return action.percentage;
     default:

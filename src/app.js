@@ -1,14 +1,14 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import Calendar from './Components/Calendar';
-import DatePicker from './Components/DatePicker';
-import Participants from './Components/Participants';
-import Result from './Components/Result';
+import React                               from 'react';
+import {connect}                           from 'react-redux';
+import Calendar                            from './Components/Calendar';
+import DatePicker                          from './Components/DatePicker';
+import Participants                        from './Components/Participants';
+import Result                              from './Components/Result';
 import {AddParticipant, RemoveParticipant} from './State/Participants';
-import {SetAbsent, UnsetAbsent} from './State/Absents';
-import {ToggleDay} from './State/Days';
-import {ChangeStartDay} from './State/StartDay';
-import {ChangePercentage} from './State/Percentage';
+import {SetAbsent, UnsetAbsent}            from './State/Absents';
+import {ToggleDay}                         from './State/Days';
+import {ChangeStartDay}                    from './State/StartDay';
+import {ChangePercentage}                  from './State/Percentage';
 
 class App extends React.Component
 {
@@ -37,10 +37,4 @@ class App extends React.Component
   }
 };
 
-const select = function(state) {
-  const  {participants, absents, percentage, startDay, days} = state;
-  return {participants, absents, percentage, startDay, days};
-};
-
-
-export default connect(select)(App);
+export default connect(state => state)(App);
