@@ -11,7 +11,10 @@ export function RemoveParticipant(name)
   return {type : REMOVE_PARTICIPANT, name};
 }
 
-const reducer = function(state = [], action)
+const defaultParticipants = window.localStorage.participants ?
+                            JSON.parse(window.localStorage.participants) : [];
+
+const reducer = function(state = defaultParticipants, action)
 {
   switch(action.type)
   {

@@ -12,4 +12,11 @@ const finalCreateStore = compose(
 const reducers = {participants, absents, days, startDay, percentage};
 const store = finalCreateStore(combineReducers(reducers));
 
+store.subscribe(function()
+{
+  const {percentage, participants} = store.getState();
+  window.localStorage.setItem('percentage', percentage);
+  window.localStorage.setItem('participants', JSON.stringify(participants));
+});
+
 export default store;
