@@ -4,16 +4,22 @@ class Day extends React.Component
 {
   renderWorking()
   {
-    const {participants, absents, index} = this.props;
-    const list = participants.map(function(participant, i)
+    const {participants, absents, dayIndex, set_absent, unset_absent} = this.props;
+    const toggleStyle = {fontSize : 10};
+    const list = participants.map(function(participant, index)
     {
       const isAbsent = !!absents.find(function(absent)
       {
         const {p, d} = absent;
-        return (participants.indexOf(participant) === p) && (index === d);
+        return (index === p) && (dayIndex === d);
       });
-      return <li key={i} style={{color : isAbsent ? 'red' : 'green'}} >
-        {participant}{isAbsent ? '' : ' : 2'}
+
+      const toggleAbsent = isAbsent ?
+        () => unset_absent(index, dayIndex) : () => set_absent(index, dayIndex);
+
+      return <li key={index} style={{color : isAbsent ? 'red' : 'green'}} >
+        {participant}{isAbsent ? ' ' : ' : 2 '}
+        <a href="#" style={toggleStyle} onClick={toggleAbsent}>Toggle</a>
       </li>;
     });
     return <ul>{list}</ul>;
