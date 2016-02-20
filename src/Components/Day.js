@@ -1,8 +1,6 @@
 import React  from 'react';
 import moment from 'moment';
 
-const toggleStyle = {fontSize : 10};
-
 class Day extends React.Component
 {
   renderWorking()
@@ -20,7 +18,7 @@ class Day extends React.Component
 
       return <li key={index} style={{color : isAbsent ? 'red' : 'green'}} >
         {participant}{isAbsent ? ' ' : ' : 2 '}
-        <a href="#" style={toggleStyle} onClick={toggleAbsent}>Toggle</a>
+        <a href="#" style={{fontSize : 10}} onClick={toggleAbsent}>Toggle</a>
       </li>;
     });
     return <ul>{list}</ul>;

@@ -16,12 +16,13 @@ const defaultParticipants = window.localStorage.participants ?
 
 const reducer = function(state = defaultParticipants, action)
 {
-  switch(action.type)
+  const {type, name} = action;
+  switch(type)
   {
     case ADD_PARTICIPANT:
-      return [...state, action.name];
+      return [...state, name];
     case REMOVE_PARTICIPANT:
-      return state.filter(name => name !== action.name);
+      return state.filter(n => n !== name);
     default:
       return state;
   }

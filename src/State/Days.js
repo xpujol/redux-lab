@@ -10,9 +10,11 @@ const fullWeek = Array.apply(0, Array(numDays)).map(n => true);
 
 const reducer = function(state = fullWeek, action)
 {
-  switch(action.type){
+  const {type, index} = action;
+  switch(type)
+  {
     case TOGGLE_DAY:
-      return state.map((day, i) => i === action.index ? !day : day);
+      return state.map((day, i) => i === index ? !day : day);
     default:
       return state;
   }

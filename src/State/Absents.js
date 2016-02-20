@@ -13,8 +13,9 @@ export function UnsetAbsent(participant, day)
 
 const reducer = function(state = [], action)
 {
-  const {participant, day, type} = action;
-  switch(type){
+  const {type, participant, day} = action;
+  switch(type)
+  {
     case SET_ABSENT:
       return [...state, {p : participant, d : day}];
     case UNSET_ABSENT:

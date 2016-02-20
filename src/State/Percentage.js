@@ -9,10 +9,11 @@ const defaultPercentage = window.localStorage.percentage || 70;
 
 const reducer = function(state = defaultPercentage, action)
 {
+  const {type, percentage} = action;
   switch(action.type)
   {
     case CHANGE_PERCENTAGE:
-      return action.percentage;
+      return percentage;
     default:
       return state;
   }
