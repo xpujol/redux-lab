@@ -1,5 +1,7 @@
 import React from 'react';
 
+const sum = arr => arr.length ? arr.reduce((a, b) => a + b) : 0;
+
 class Result extends React.Component
 {
   handleChange(e)
@@ -10,8 +12,22 @@ class Result extends React.Component
   calculateResult()
   {
     const {participants, absents, percentage, days} = this.props;
-    const total = (percentage/100) * 2 * (((participants.length  * days.filter(d => d).length)) - absents.length);
-    return Math.round(total);
+    const total = days.map(function(isWorkingDay, dayIndex)
+    {
+      if ((!isWorkingDay) || (days.lastIndexOf(true) === dayIndex))
+      {
+        return 0;
+      }
+      return sum(participants.map(function(p, pIndex)
+      {
+        if (!!absents.find(a => pIndex === a.p && dayIndex === a.d))
+        {
+          return 0;
+        }
+        return (days.indexOf(true) === dayIndex) ? 1 : 2;
+      }));
+    });
+    return Math.round(10 * sum(total) * (percentage/100)) / 10;
   }
   render()
   {
