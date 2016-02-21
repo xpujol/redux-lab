@@ -24,6 +24,7 @@ class Participants extends React.Component
     if (value !== '')
     {
       this.props.add(value);
+      this.setState({value : ''});
     }
   }
   render()
