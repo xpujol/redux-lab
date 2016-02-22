@@ -30,8 +30,9 @@ class Day extends React.Component
     const content = isNotHoliday ?
                     (isDemoDay ? <h4>DEMO</h4> : this.renderWorking()) :
                     <h5>Holiday</h5>;
+
     return <td style={{height: 200, width: 200, border: '1px solid black'}}>
-      <p>{moment(startDay).add(dayIndex < 5 ? dayIndex : dayIndex + 2, 'd').format('ddd, DD/MM/YYYY')}</p>
+      <p style={isNotHoliday ? null : {color:'red'}} >{moment(startDay).add(dayIndex < 5 ? dayIndex : dayIndex + 2, 'd').format('ddd, DD/MM/YYYY')}</p>
       {content}
       <button onClick={toggle}>Toggle holiday</button>
     </td>;

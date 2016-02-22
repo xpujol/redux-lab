@@ -7,7 +7,8 @@ export function ChangeStartDay(date)
   return {type : CHANGE_START_DAY, date};
 }
 
-const nextMonday = moment().day(8);
+const today = moment();
+const nextMonday = today.day() <= 1 ? today.day(1) : today.day(8);
 
 const reducer = function(state = nextMonday, action)
 {
