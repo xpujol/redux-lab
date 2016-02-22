@@ -18,8 +18,10 @@ class Participants extends React.Component
       {p} <a href="#" onClick={() => del(p)}>[x]</a>
     </li>);
   }
-  handleButton()
+  handleSubmit(e)
   {
+    e.preventDefault();
+
     const {value} = this.state;
     if (value !== '')
     {
@@ -30,10 +32,12 @@ class Participants extends React.Component
   render()
   {
     return <div>
-      <p>
-        <input onChange={this.handleChange.bind(this)} type="text" value={this.state.value}/>
-        <button onClick={this.handleButton.bind(this)}>Add participant</button>
-      </p>
+      <form onSubmit={this.handleSubmit.bind(this)}>
+        <p>
+          <input onChange={this.handleChange.bind(this)} type="text" value={this.state.value}/>
+          <button>Add participant</button>
+        </p>
+      </form>
       <ul>{this.renderParticipants()}</ul>
     </div>;
   }

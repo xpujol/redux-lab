@@ -9,7 +9,7 @@ class Result extends React.Component
     const val = e.target.value;
     (val >= 0) && (val <= 100) && this.props.change_percentage(val);
   }
-  calculateResult()
+  calculateResultWithoutPercentage()
   {
     const {participants, absents, percentage, days} = this.props;
     const total = days.map(function(isWorkingDay, dayIndex)
@@ -27,16 +27,25 @@ class Result extends React.Component
         return (days.indexOf(true) === dayIndex) ? 1 : 2;
       }));
     });
-    return Math.round(10 * sum(total) * (percentage/100)) / 10;
+
+    return sum(total);
+  }
+  calculateResult(withoutPercentage)
+  {
+    return Math.round(10 * withoutPercentage * (this.props.percentage/100)) / 10;
   }
   render()
   {
+    const withoutPercentage = this.calculateResultWithoutPercentage();
     return <div>
       <p>
         Percentage :
         <input onChange={this.handleChange.bind(this)} type="text" value={this.props.percentage} />
       </p>
-      <h1>{this.calculateResult()} points</h1>
+      <p>
+        {withoutPercentage} points - {100 - this.props.percentage}% =
+      </p>
+      <h1>{this.calculateResult(withoutPercentage)} points</h1>
     </div>
   }
 };
