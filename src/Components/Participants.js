@@ -27,11 +27,14 @@ class Participants extends React.Component
     e.preventDefault();
 
     const {value} = this.state;
-    if (value !== '')
+    const {add, participants} = this.props;
+
+    if ((value === '') || participants.map(p => p.name).includes(value))
     {
-      this.props.add(value);
-      this.setState({value : ''});
+      return;
     }
+    add(value);
+    this.setState({value : ''});
   }
   render()
   {
