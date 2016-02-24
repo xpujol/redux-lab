@@ -5,7 +5,7 @@ export function ChangePercentage(percentage)
   return {type : CHANGE_PERCENTAGE, percentage};
 }
 
-const defaultPercentage = window.localStorage.percentage || 70;
+const defaultPercentage = parseInt(window.localStorage.percentage, 10) || 70;
 
 const reducer = function(state = defaultPercentage, action)
 {

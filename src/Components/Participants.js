@@ -14,9 +14,13 @@ class Participants extends React.Component
   renderParticipants()
   {
     const {participants, del} = this.props;
-    return participants.map((p, i) => <li key={i}>
-      {p} <a href="#" onClick={() => del(p)}>[x]</a>
-    </li>);
+    return participants.map(function(participant, i)
+    {
+      const {name} = participant;
+      return <li key={i}>
+        {name}<a href="#" onClick={() => del(name)}>[x]</a>
+      </li>;
+    });
   }
   handleSubmit(e)
   {

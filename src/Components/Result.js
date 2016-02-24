@@ -11,16 +11,16 @@ class Result extends React.Component
   }
   calculateResultWithoutPercentage()
   {
-    const {participants, absents, percentage, days} = this.props;
+    const {participants, percentage, days} = this.props;
     const total = days.map(function(isWorkingDay, dayIndex)
     {
       if ((!isWorkingDay) || (days.lastIndexOf(true) === dayIndex))
       {
         return 0;
       }
-      return sum(participants.map(function(p, pIndex)
+      return sum(participants.map(function(participant)
       {
-        if (!!absents.find(a => pIndex === a.p && dayIndex === a.d))
+        if (participant.absent.includes(dayIndex))
         {
           return 0;
         }
